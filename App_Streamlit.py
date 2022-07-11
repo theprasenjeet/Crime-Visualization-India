@@ -284,3 +284,32 @@ fig.update_layout(title_text='Most Violent Districts')
 
 st.write(fig)
 
+st.subheader('Crime Against SCs states & District Wise')
+scsd = sc[sc.DISTRICT!= 'Total']
+scsd = scsd.groupby(['STATE/UT', 'DISTRICT'])['Murder', 'Rape',
+       'Kidnapping and Abduction', 'Dacoity', 'Robbery', 'Arson', 'Hurt',
+       'Prevention of atrocities (POA) Act',
+       'Protection of Civil Rights (PCR) Act', 'Other Crimes Against SCs'].sum().reset_index()
+
+
+states = ['Rajasthan', 'Maharashtra', 'Andhra pradesh', 'Uttar pradesh', 'Bihar','Madhya pradesh']
+sns.set_context("talk")
+sns.set_style("darkgrid")
+plt.style.use('fivethirtyeight')
+fig=plt.figure(figsize=(20,20))
+for i , state in enumerate(states):
+    scsd1 = scsd[scsd['STATE/UT'] == state].sort_values('Rape', ascending = False)
+    scsd1 = scsd1.head(10)
+    plt.subplot(3,2,i+1)
+    ax = sns.barplot(data= scsd1,x= 'Rape' ,y= 'DISTRICT',palette = 'bright' )
+    plt.xlabel('Rape Cases')
+    plt.ylabel('')
+    plt.title(state.capitalize(),size = 20)
+    for p in ax.patches:
+        ax.annotate("%.f" % p.get_width(), xy=(p.get_width(), p.get_y()+p.get_height()/2),
+            xytext=(5, 0), textcoords='offset points', ha="left", va="center")
+         
+plt.tight_layout()
+plt.subplots_adjust(hspace= .3)
+st.write(fig)
+
