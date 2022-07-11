@@ -266,3 +266,21 @@ plt.tight_layout()
 plt.subplots_adjust(hspace= .3)
 
 st.write(fig)
+
+st.subheader('Which is the most violent District in India?')
+scd['sum'] = scd['Murder']+scd['Rape']+scd['Kidnapping and Abduction']+scd['Dacoity']+scd['Robbery']+scd['Arson']+scd['Hurt']+scd['Prevention of atrocities (POA) Act']+scd['Protection of Civil Rights (PCR) Act']+scd['Other Crimes Against SCs']
+mostviolent = scd.groupby(['DISTRICT'])['sum'].sum().sort_values(ascending = False).reset_index()
+mostviolent = mostviolent.head(15)
+import plotly.graph_objects as go
+
+
+# Use textposition='auto' for direct text
+fig = go.Figure(data=[go.Bar(
+            x= mostviolent['DISTRICT'], y= mostviolent['sum'],
+            text= mostviolent['sum'],
+            textposition='auto',marker_color='rgb(255, 22, 22)'
+        )])
+fig.update_layout(title_text='Most Violent Districts')
+
+st.write(fig)
+
