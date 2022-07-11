@@ -213,8 +213,8 @@ scs = scs.append(new_row, ignore_index = True)
 scs.at[35, 'STATE/UT']= 'Telangana'
 scs.at[9,'STATE/UT'] = 'Nct of Delhi'
 
-url = ("https://github.com/theprasenjeet/Cr/blob/main/Indian_States.shp")
-gdf = gpd.read_file(url.json())
+url = ("https://github.com/geohacker/india/blob/master/state/india_telengana.geojson")
+gdf = gpd.read_file(url)
 
 gdf.st_nm = gdf.st_nm.str.lower()
 scs['STATE/UT'] = scs['STATE/UT'].str.lower()
