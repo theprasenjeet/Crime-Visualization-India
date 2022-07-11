@@ -313,3 +313,81 @@ plt.tight_layout()
 plt.subplots_adjust(hspace= .3)
 st.write(fig)
 
+st.subheader('**Number of cases of Hurt in 6 states**')
+fig=plt.figure(figsize=(20,20))
+plt.style.use('fivethirtyeight')
+for i , state in enumerate(states):
+    scsd1 = scsd[scsd['STATE/UT'] == state].sort_values('Hurt', ascending = False)
+    scsd1 = scsd1.head(10)
+    plt.subplot(3,2,i+1)
+    ax = sns.barplot(data= scsd1,x= 'Hurt' ,y= 'DISTRICT', palette = 'bright')
+    plt.xlabel('Hurts')
+    plt.ylabel('')
+    plt.title(state.capitalize(),size = 20)
+    for p in ax.patches:
+        ax.annotate("%.f" % p.get_width(), xy=(p.get_width(), p.get_y()+p.get_height()/2),
+            xytext=(5, 0), textcoords='offset points', ha="left", va="center")
+         
+plt.tight_layout()
+plt.subplots_adjust(hspace= .3)
+plt.show()plt.figure(figsize=(20,20))
+plt.style.use('fivethirtyeight')
+for i , state in enumerate(states):
+    scsd1 = scsd[scsd['STATE/UT'] == state].sort_values('Hurt', ascending = False)
+    scsd1 = scsd1.head(10)
+    plt.subplot(3,2,i+1)
+    ax = sns.barplot(data= scsd1,x= 'Hurt' ,y= 'DISTRICT', palette = 'bright')
+    plt.xlabel('Hurts')
+    plt.ylabel('')
+    plt.title(state.capitalize(),size = 20)
+    for p in ax.patches:
+        ax.annotate("%.f" % p.get_width(), xy=(p.get_width(), p.get_y()+p.get_height()/2),
+            xytext=(5, 0), textcoords='offset points', ha="left", va="center")
+         
+plt.tight_layout()
+plt.subplots_adjust(hspace= .3)
+st.write(fig)
+
+st.subheader('****Number of cases of Atrocities in 6 states****')
+
+
+plt.style.use('Solarize_Light2')
+fig=plt.figure(figsize=(20,20))
+for i , state in enumerate(states):
+    scsd1 = scsd[scsd['STATE/UT'] == state].sort_values('Prevention of atrocities (POA) Act', ascending = False)
+    scsd1 = scsd1.head(10)
+    plt.subplot(3,2,i+1)
+    ax = sns.barplot(data= scsd1,x= 'Prevention of atrocities (POA) Act' ,y= 'DISTRICT', palette = 'dark' )
+    plt.xlabel('Prevention of atrocities (POA) Act')
+    plt.ylabel('')
+    plt.title(state.capitalize(),size = 20)
+    for p in ax.patches:
+        ax.annotate("%.f" % p.get_width(), xy=(p.get_width(), p.get_y()+p.get_height()/2),
+            xytext=(5, 0), textcoords='offset points', ha="left", va="center")
+         
+plt.tight_layout()
+plt.subplots_adjust(hspace= .3)
+st.write(fig)
+
+st.subheader('**Number of cases of Hurts in 6 states**')
+fig=plt.figure(figsize=(20,20))
+plt.style.use('classic')
+for i , state in enumerate(states):
+    scsd1 = scsd[scsd['STATE/UT'] == state].sort_values('Other Crimes Against SCs', ascending = False)
+    scsd1 = scsd1.head(10)
+    plt.subplot(3,2,i+1)
+    ax = sns.barplot(data= scsd1,x= 'Other Crimes Against SCs' ,y= 'DISTRICT', palette = 'bright' )
+    plt.xlabel('Other Crimes Against SCs')
+    plt.ylabel('')
+    plt.title(state.capitalize(),size = 20)
+    for p in ax.patches:
+        ax.annotate("%.f" % p.get_width(), xy=(p.get_width(), p.get_y()+p.get_height()/2),
+            xytext=(5, 0), textcoords='offset points', ha="left", va="center")
+         
+plt.tight_layout()
+plt.subplots_adjust(hspace= .3)
+st.write(fig)
+
+
+st.subheader('****# Conclusion****')
+st.caption('Despite governments best effort the number of atrocities and hurt cases are increasing over the years. **Rajasthan ,Uttarpradesh , Bihar ,Maharashtra and Rajasthan** seem to be hotspot for crimes against Scs.')
