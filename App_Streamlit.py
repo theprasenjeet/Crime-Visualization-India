@@ -213,16 +213,16 @@ scs = scs.append(new_row, ignore_index = True)
 scs.at[35, 'STATE/UT']= 'Telangana'
 scs.at[9,'STATE/UT'] = 'Nct of Delhi'
 
-url = (
-    "https://github.com/theprasenjeet/Cr/blob/main/Indian_States.shp"
-)
-gdf = gpd.read_file(url)
+url = ("https://github.com/theprasenjeet/Cr/blob/main/Indian_States.shp")
+gdf = gpd.read_file(url.json())
 
 gdf.st_nm = gdf.st_nm.str.lower()
 scs['STATE/UT'] = scs['STATE/UT'].str.lower()
 
 merged = gdf.merge(scs , left_on='st_nm', right_on='STATE/UT')
 merged1 = merged.drop(['STATE/UT'], axis=1)
+
+#pysal
 import pysal.viz.mapclassify
 import mapclassify
 fig=figsize = (25, 23)
