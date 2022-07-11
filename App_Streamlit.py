@@ -26,7 +26,7 @@ warnings.filterwarnings("ignore")
  
  
  
- st.title("HotSpot Visualization")
+st.title("HotSpot Visualization")
 try:
  uploaded_file = st.file_uploader("Choose a file 1:")
  if uploaded_file is not None:
