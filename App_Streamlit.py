@@ -1,3 +1,7 @@
+import sys
+if not sys.warnoptions:
+    import warnings
+    warnings.simplefilter("ignore")
 #importing libraries
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
@@ -26,7 +30,8 @@ init_notebook_mode(connected=True)    #THIS LINE IS MOST IMPORTANT AS THIS WILL 
 import warnings
 warnings.filterwarnings("ignore")
 
-try:
+
+
 st.title("HotSpot Visualization")
 
 uploaded_file = st.file_uploader("Choose a file 1:")
@@ -394,6 +399,3 @@ st.write(fig)
 
 st.subheader('****# Conclusion****')
 st.caption('Despite governments best effort the number of atrocities and hurt cases are increasing over the years. **Rajasthan ,Uttarpradesh , Bihar ,Maharashtra and Rajasthan** seem to be hotspot for crimes against Scs.')
-except:
-        st.error("Please select file")
-        st.stop()
