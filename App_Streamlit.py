@@ -330,7 +330,9 @@ for i , state in enumerate(states):
          
 plt.tight_layout()
 plt.subplots_adjust(hspace= .3)
-plt.show()plt.figure(figsize=(20,20))
+st.write(fig)
+
+plt.figure(figsize=(20,20))
 plt.style.use('fivethirtyeight')
 for i , state in enumerate(states):
     scsd1 = scsd[scsd['STATE/UT'] == state].sort_values('Hurt', ascending = False)
