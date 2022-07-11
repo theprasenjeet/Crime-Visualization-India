@@ -235,25 +235,18 @@ params = {'legend.fontsize': 20,
           'legend.handlelength': 2}
 plot.rcParams.update(params)
 
-ax= merged1.dropna().plot(column= 'sum', figsize=figsize, scheme= 'User_Defined',cmap = 'YlGn',edgecolor='black',k = colors,legend = True, classification_kwds=dict(bins=[5000,10000,20000,40000,60000,90000]) )
-ax.set_title(" Total Cases", size = 25)
+fig=figsize = (25, 20)
+
+cmap = 'YlGn'
+ax= merged1.dropna().plot(column= 'Murder', cmap= cmap, figsize=figsize, scheme='equal_interval',edgecolor='black')
+ax.set_title(" Murder Cases", size = 25)
 for idx, row in merged1.iterrows():
-   ax.text(row.coords[0], row.coords[1], s=row['sum'], horizontalalignment='center', bbox={'facecolor': 'yellow', 'alpha':0.8, 'pad': 2, 'edgecolor':'black'})
+   ax.text(row.coords[0], row.coords[1], s=row['Murder'], horizontalalignment='center', bbox={'facecolor': 'white', 'alpha':0.8, 'pad': 2, 'edgecolor':'none'})
 
-ax.get_legend().set_bbox_to_anchor((0.8, 0.4))
-ax.get_legend().set_title('Number of cases')
-
-ax.set_title("Total cases" , size = 30)
-ax.axis('off')
-leg = ax.get_legend()
-for lbl in leg.get_texts():
-    label_text = lbl.get_text()
-    lower = label_text.split()[0]
-    upper = label_text.split()[2]
-    new_text = f'{float(lower):,.0f} - {float(upper):,.0f}'
-    lbl.set_text(new_text)
-
-
+norm = matplotlib.colors.Normalize(vmin=merged1['Murder'].min(), vmax= merged1['Murder'].max())
+n_cmap = cm.ScalarMappable(norm=norm, cmap= cmap)
+n_cmap.set_array([])
+ax.get_figure().colorbar(n_cmap)
+ax.set_axis_off()
 plt.axis('equal')
-
 st.write(fig)
