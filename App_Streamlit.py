@@ -18,8 +18,7 @@ import warnings
 warnings.filterwarnings("ignore")
 import streamlit as st
 from plotly.offline import init_notebook_mode
- 
- init_notebook_mode(connected=True)    #THIS LINE IS MOST IMPORTANT AS THIS WILL DISPLAY PLOT ON
+init_notebook_mode(connected=True)    #THIS LINE IS MOST IMPORTANT AS THIS WILL DISPLAY PLOT ON
  #NOTEBOOK WHILE KERNEL IS RUNNING
  
 import warnings
