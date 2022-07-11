@@ -1,7 +1,3 @@
- import sys
- if not sys.warnoptions:
-     import warnings
-     warnings.simplefilter("ignore")
  #importing libraries
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
@@ -25,7 +21,6 @@ init_notebook_mode(connected=True)    #THIS LINE IS MOST IMPORTANT AS THIS WILL 
  
  init_notebook_mode(connected=True)    #THIS LINE IS MOST IMPORTANT AS THIS WILL DISPLAY PLOT ON
  #NOTEBOOK WHILE KERNEL IS RUNNING
- 
  
  import warnings
  warnings.filterwarnings("ignore")
