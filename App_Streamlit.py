@@ -256,4 +256,4 @@ for lbl in leg.get_texts():
 
 plt.axis('equal')
 
-st.write(fig)
+st.pyplot(fig)
