@@ -214,7 +214,7 @@ scs.at[35, 'STATE/UT']= 'Telangana'
 scs.at[9,'STATE/UT'] = 'Nct of Delhi'
 
 
-gdf = gpd.read_file("Indian_States.shp")
+gdf = gpd.read_file("ml.zip")
 
 gdf.st_nm = gdf.st_nm.str.lower()
 scs['STATE/UT'] = scs['STATE/UT'].str.lower()
@@ -256,4 +256,4 @@ for lbl in leg.get_texts():
 
 plt.axis('equal')
 
-st.pyplot(fig)
+st.write(fig)
