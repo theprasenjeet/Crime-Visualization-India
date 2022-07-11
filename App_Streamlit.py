@@ -235,18 +235,34 @@ params = {'legend.fontsize': 20,
           'legend.handlelength': 2}
 plot.rcParams.update(params)
 
-fig=figsize = (25, 20)
 
-cmap = 'YlGn'
-ax= merged1.dropna().plot(column= 'Murder', cmap= cmap, figsize=figsize, scheme='equal_interval',edgecolor='black')
-ax.set_title(" Murder Cases", size = 25)
-for idx, row in merged1.iterrows():
-   ax.text(row.coords[0], row.coords[1], s=row['Murder'], horizontalalignment='center', bbox={'facecolor': 'white', 'alpha':0.8, 'pad': 2, 'edgecolor':'none'})
+st.subheader('Crime Against SCs District Wise')
+scd = sc[sc.DISTRICT != 'Total']
+scd = scd.groupby(['DISTRICT'])['Murder', 'Rape',
+       'Kidnapping and Abduction', 'Dacoity', 'Robbery', 'Arson', 'Hurt',
+       'Prevention of atrocities (POA) Act',
+       'Protection of Civil Rights (PCR) Act', 'Other Crimes Against SCs'].sum().reset_index()
 
-norm = matplotlib.colors.Normalize(vmin=merged1['Murder'].min(), vmax= merged1['Murder'].max())
-n_cmap = cm.ScalarMappable(norm=norm, cmap= cmap)
-n_cmap.set_array([])
-ax.get_figure().colorbar(n_cmap)
-ax.set_axis_off()
-plt.axis('equal')
+
+sns.set_context("talk")
+
+fig=plt.figure(figsize=(20,30))
+plt.style.use('fivethirtyeight')
+
+for i,column in enumerate(columns):
+    scd1 = scd.sort_values(column,ascending = False)
+    scd1 = scd1.head(10)
+    plt.subplot(5,2,i+1)
+    ax= sns.barplot(data= scd1,x= column ,y='DISTRICT' )
+    plt.xlabel('')
+    plt.ylabel('')
+    plt.title(column,size = 20)
+    for p in ax.patches:
+        ax.annotate("%.f" % p.get_width(), xy=(p.get_width(), p.get_y()+p.get_height()/2),
+            xytext=(5, 0), textcoords='offset points', ha="left", va="center")
+         
+    
+plt.tight_layout()
+plt.subplots_adjust(hspace= .3)
+
 st.write(fig)
