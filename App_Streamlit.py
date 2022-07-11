@@ -10,7 +10,7 @@ import plotly.graph_objects as go
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 init_notebook_mode(connected=True)    #THIS LINE IS MOST IMPORTANT AS THIS WILL DISPLAY PLOT ON
 #NOTEBOOK WHILE KERNEL IS RUNNING
-showWarningOnDirectExecution = false
+
 
 
 from IPython.display import HTML,display
@@ -26,7 +26,7 @@ init_notebook_mode(connected=True)    #THIS LINE IS MOST IMPORTANT AS THIS WILL 
 import warnings
 warnings.filterwarnings("ignore")
 
-
+try:
 st.title("HotSpot Visualization")
 
 uploaded_file = st.file_uploader("Choose a file 1:")
@@ -394,3 +394,6 @@ st.write(fig)
 
 st.subheader('****# Conclusion****')
 st.caption('Despite governments best effort the number of atrocities and hurt cases are increasing over the years. **Rajasthan ,Uttarpradesh , Bihar ,Maharashtra and Rajasthan** seem to be hotspot for crimes against Scs.')
+except:
+        st.error("Please select file")
+        st.stop()
