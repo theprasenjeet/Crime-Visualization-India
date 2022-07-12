@@ -26,20 +26,20 @@ warnings.filterwarnings("ignore")
  
  
  
-st.title("HotSpot Visualization")
+st.title("HotSpot Visualization For Crime Against SC/ST")
 try:
  uploaded_file = st.file_uploader("Select District_wise_crimes_committed_against_SC_2001_2012:")
  if uploaded_file is not None:
    sc1 = pd.read_csv(uploaded_file)
    st.write(sc1)
-   st.markdown(sc1.index.tolist())
+   
 
  
  uploaded_file = st.file_uploader("Select District_wise_crimes_committed_against_SC_2013:")
  if uploaded_file is not None:
    sc13 =pd.read_csv(uploaded_file)
    st.write(sc13)
-   st.markdown(sc13.index.tolist())
+   
  
  frames = [sc1 , sc13]
  sc = pd.concat(frames)
